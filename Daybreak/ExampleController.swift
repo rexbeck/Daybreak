@@ -59,7 +59,7 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Bruh"
+    title = "Daybreak"
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Dark",
                                                         style: .done,
                                                         target: self,
