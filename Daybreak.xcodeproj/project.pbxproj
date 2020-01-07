@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		462A519DF261E629D0F19E3F /* Pods_Daybreak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5FE6BF8B1CDB802A8A9FBE4 /* Pods_Daybreak.framework */; };
-		7C293B8123C391F500AEE7A7 /* CustomCalendarExampleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C293B8023C391F500AEE7A7 /* CustomCalendarExampleController.swift */; };
 		7C293B8323C392C400AEE7A7 /* ExampleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C293B8223C392C400AEE7A7 /* ExampleController.swift */; };
 		7C293B8523C3930800AEE7A7 /* ExampleNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C293B8423C3930800AEE7A7 /* ExampleNotificationController.swift */; };
 		7C293B8723C3932500AEE7A7 /* StyleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C293B8623C3932500AEE7A7 /* StyleGenerator.swift */; };
@@ -23,7 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7C293B8023C391F500AEE7A7 /* CustomCalendarExampleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarExampleController.swift; sourceTree = "<group>"; };
 		7C293B8223C392C400AEE7A7 /* ExampleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleController.swift; sourceTree = "<group>"; };
 		7C293B8423C3930800AEE7A7 /* ExampleNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleNotificationController.swift; sourceTree = "<group>"; };
 		7C293B8623C3932500AEE7A7 /* StyleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGenerator.swift; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 			children = (
 				7CE5077223BE4E860018439C /* AppDelegate.swift */,
 				7CE5077423BE4E860018439C /* SceneDelegate.swift */,
-				7C293B8023C391F500AEE7A7 /* CustomCalendarExampleController.swift */,
 				7C293B8223C392C400AEE7A7 /* ExampleController.swift */,
 				7C293B8423C3930800AEE7A7 /* ExampleNotificationController.swift */,
 				7C293B8623C3932500AEE7A7 /* StyleGenerator.swift */,
@@ -227,7 +224,6 @@
 				7CE5077D23BE4E860018439C /* Daybreak.xcdatamodeld in Sources */,
 				7C293B8323C392C400AEE7A7 /* ExampleController.swift in Sources */,
 				7C293B8723C3932500AEE7A7 /* StyleGenerator.swift in Sources */,
-				7C293B8123C391F500AEE7A7 /* CustomCalendarExampleController.swift in Sources */,
 				7CE5077723BE4E860018439C /* ViewController.swift in Sources */,
 				7C293B8523C3930800AEE7A7 /* ExampleNotificationController.swift in Sources */,
 				7C293B8923C3934800AEE7A7 /* DataPickerController.swift in Sources */,

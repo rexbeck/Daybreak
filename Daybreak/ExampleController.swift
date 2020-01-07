@@ -9,6 +9,8 @@ enum SelectedStyle {
 
 class ExampleController: DayViewController, DatePickerControllerDelegate {
 
+    
+//MARK: List of Premade Events
   var data = [["Breakfast at Tiffany's",
                "New York, 5th avenue"],
               
@@ -45,16 +47,19 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
 //               "Craig Federighi"],
 
               ]
-
+    
+//Event colors
   var colors = [UIColor.blue,
                 UIColor.purple,
+                UIColor.green,
                 UIColor.red]
 
-  var currentStyle = SelectedStyle.Dark
+//Light mode or dark mode(Dark mode doesn't work)
+    var currentStyle = SelectedStyle.Light
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "CalendarKit Demo"
+    title = "Bruh"
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Dark",
                                                         style: .done,
                                                         target: self,
@@ -63,7 +68,7 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
                                                         style: .plain,
                                                         target: self,
                                                         action: #selector(ExampleController.presentDatePicker))
-    navigationController?.navigationBar.isTranslucent = false
+    navigationController?.navigationBar.isTranslucent = true
     dayView.autoScrollToFirstEvent = true
     reloadData()
   }
@@ -121,7 +126,7 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
       var info = data[Int(arc4random_uniform(UInt32(data.count)))]
 
       let timezone = TimeZone.ReferenceType.default
-      info.append(datePeriod.beginning!.format(with: "dd.MM.YYYY", timeZone: timezone))
+      info.append(datePeriod.beginning!.format(with: "MM.dd.YYYY", timeZone: timezone))
       info.append("\(datePeriod.beginning!.format(with: "HH:mm", timeZone: timezone)) - \(datePeriod.end!.format(with: "HH:mm", timeZone: timezone))")
       event.text = info.reduce("", {$0 + $1 + "\n"})
       event.color = colors[Int(arc4random_uniform(UInt32(colors.count)))]
