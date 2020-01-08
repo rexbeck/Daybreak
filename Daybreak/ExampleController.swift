@@ -60,14 +60,19 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Daybreak"
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Dark",
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+",
                                                         style: .done,
                                                         target: self,
                                                         action: #selector(ExampleController.changeStyle))
-    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Change Date",
+
+    navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "Dark",
                                                         style: .plain,
                                                         target: self,
-                                                        action: #selector(ExampleController.presentDatePicker))
+                                                        action: #selector(ExampleController.presentDatePicker)),
+                                         UIBarButtonItem(title: "Change Date",
+                                                        style: .plain,
+                                                        target: self,
+                                                        action: #selector(ExampleController.presentDatePicker))]
     navigationController?.navigationBar.isTranslucent = true
     dayView.autoScrollToFirstEvent = true
     reloadData()
