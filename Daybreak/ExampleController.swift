@@ -17,35 +17,6 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
               ["Eating Sandwiches with Jake",
                 "New Mexico"]
 
-//              ["Workout",
-//               "Tufteparken"],
-//
-//              ["Meeting with Alex",
-//               "Home",
-//               "Oslo, Tjuvholmen"],
-//
-//              ["Beach Volleyball",
-//               "Ipanema Beach",
-//               "Rio De Janeiro"],
-//
-//              ["WWDC",
-//               "Moscone West Convention Center",
-//               "747 Howard St"],
-//
-//              ["Google I/O",
-//               "Shoreline Amphitheatre",
-//               "One Amphitheatre Parkway"],
-//
-//              ["✈️️ to Svalbard ❄️️❄️️❄️️❤️️",
-//               "Oslo Gardermoen"],
-//
-//              ["💻📲 Developing CalendarKit",
-//               "🌍 Worldwide"],
-//
-//              ["Software Development Lecture",
-//               "Mikpoli MB310",
-//               "Craig Federighi"],
-
               ]
     
 //Event colors
@@ -54,22 +25,24 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
                 UIColor.green,
                 UIColor.red]
 
-//Light mode or dark mode(Dark mode doesn't work)
+//Setting the default startup
     var currentStyle = SelectedStyle.Light
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Daybreak"
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+",
-                                                        style: .done,
-                                                        target: self,
-                                                        action: #selector(ExampleController.changeStyle))
-
-    navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "Dark",
+//Title that goes across the top, might not fit very well depending on what I do
+    title = ""
+//This is the different options for the navigation bar. To have multiple ones you need to have them be in an array with ...ButtonItems instead of ...ButtonItem
+    navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Dark",
                                                         style: .plain,
                                                         target: self,
-                                                        action: #selector(ExampleController.presentDatePicker)),
-                                         UIBarButtonItem(title: "Change Date",
+                                                        action: #selector(ExampleController.changeStyle)),
+                                                        UIBarButtonItem(title: "+",
+                                                        style: .done,
+                                                        target: self,
+                                                        action: #selector(ExampleController.customEvent))]
+
+    navigationItem.leftBarButtonItems = [UIBarButtonItem(title: "Change Date",
                                                         style: .plain,
                                                         target: self,
                                                         action: #selector(ExampleController.presentDatePicker))]
@@ -78,10 +51,12 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
     reloadData()
   }
 
+//changeStyle is how you flip between dark and light mode. It's the action: inside the UIBarButtonItem
   @objc func changeStyle() {
     var title: String!
     var style: CalendarStyle!
 
+//This is how it switches between light and dark mode. If you click the nav item it flips it
     if currentStyle == .Dark {
       currentStyle = .Light
       title = "Dark"
@@ -91,6 +66,7 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
       style = StyleGenerator.darkStyle()
       currentStyle = .Dark
     }
+//This is just changing everything based on the what was changed above
     updateStyle(style)
     navigationItem.rightBarButtonItem!.title = title
     navigationController?.navigationBar.barTintColor = style.header.backgroundColor
@@ -98,6 +74,7 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
     reloadData()
   }
 
+//This is the function for changing the date in the navigation bar
   @objc func presentDatePicker() {
     let picker = DatePickerController()
     picker.date = dayView.state!.selectedDate
@@ -105,26 +82,36 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
     let navC = UINavigationController(rootViewController: picker)
     navigationController?.present(navC, animated: true, completion: nil)
   }
-
+//This might be the function for changing the date in the navigation controller
   func datePicker(controller: DatePickerController, didSelect date: Date?) {
     if let date = date {
       dayView.state?.move(to: date)
     }
     controller.dismiss(animated: true, completion: nil)
   }
+    
+//Custom function to make it so that you can create and event.
+    @objc func customEvent(){
+    
+    
+    
+  }
 
   // MARK: EventDataSource
-
   override func eventsForDate(_ date: Date) -> [EventDescriptor] {
+//I think this might be creating the date and time for events. The TimeChunk is just setting the exact time so it could possibly be getting the current time and TimeInterval is what gets the date and time for an event.
     var date = date.add(TimeChunk.dateComponents(hours: Int(arc4random_uniform(10) + 5)))
     var events = [Event]()
 
+//I have no idea what the for i in 0...4 is actually for. There's no mention of the i later on. It's possibly that it's just for picking one of the 4 colors which would match the amount but idk if that works cause its 0, 1, 2, 3, 4 which is 5 total colors. So who knows 🤷‍♂️
     for i in 0...4 {
+//Alright so this is definitely getting the date and times for events. Looks like TimePeriod is that lists the times
       let event = Event()
       let duration = Int(arc4random_uniform(160) + 60)
       let datePeriod = TimePeriod(beginning: date,
                                   chunk: TimeChunk.dateComponents(minutes: duration))
 
+//This is getting all the actual information with anything to do with the time and date. This might just be doing it for the premade ones that show up randomly however but the outline should be pretty similar.
       event.startDate = datePeriod.beginning!
       event.endDate = datePeriod.end!
 
@@ -139,13 +126,15 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
 
       // Event styles are updated independently from CalendarStyle
       // hence the need to specify exact colors in case of Dark style
+//Looks like this is deciding which color everything has to be depending on if it's light or dark mode
       if currentStyle == .Dark {
         event.textColor = textColorForEventInDarkTheme(baseColor: event.color)
         event.backgroundColor = event.color.withAlphaComponent(0.6)
       }
-
+//So the above thing might actually be for creating a new event or atleast an outline for it. Otherwise I don't think it would have the events.append(event)
       events.append(event)
-
+        
+//Absolutely no clue what this does
       let nextOffset = Int(arc4random_uniform(250) + 40)
       date = date.add(TimeChunk.dateComponents(minutes: nextOffset))
       event.userInfo = String(i)
@@ -162,6 +151,7 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
 
   // MARK: DayViewDelegate
 
+//I can use the lower code to edit/delete the different things
   override func dayViewDidSelectEventView(_ eventView: EventView) {
     guard let descriptor = eventView.descriptor as? Event else {
       return
