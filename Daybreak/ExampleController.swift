@@ -277,6 +277,32 @@ class ExampleController: DayViewController, DatePickerControllerDelegate {
       return
     }
     
+//    let deleteAlert = UIAlertController(title: "Do you want to delete this event?", message: "", preferredStyle: .alert)
+//
+//    let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: {action in
+//
+//        for i in 0..<self.list.count
+//        {
+//            let foundEvent = self.list[i]
+//            if foundEvent.text == descriptor.text && foundEvent.startDate == descriptor.startDate
+//            {
+//                self.list.remove(at: i)
+//                self.reloadData()
+//            }
+//        }
+//
+//    })
+//
+//    let cancelDeleteAction = UIAlertAction(title: "Cancel", style: .destructive, handler: {action in
+//        // do nothing and dismiss
+//    })
+//
+//    deleteAlert.addAction(deleteAction)
+//    deleteAlert.addAction(cancelDeleteAction)
+//
+//    present(deleteAlert, animated: true, completion: nil)
+    
+    
     print("Event has been longPressed: \(descriptor) \(String(describing: descriptor.userInfo))")
     
   }
